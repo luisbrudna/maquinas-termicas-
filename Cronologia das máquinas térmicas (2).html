@@ -1,0 +1,270 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Cronologia das máquinas térmicas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: mesma estrutura do modelo — filtros, régua proporcional rolável, miniatura e painel de detalhe; slab serif de cartaz industrial do século XIX */
+:root{--bg:#e8ebed;--card:#fff;--ink:#1a1f24;--mute:#5a6670;--line:#d3d9de;--band:#f5f7f8;--era:#1a1f24;--accent:#b0462b;
+  --display:"Zilla Slab",Rockwell,Georgia,serif;--body:"IBM Plex Sans",system-ui,sans-serif}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121619;--card:#1b2126;--ink:#e7ebee;--mute:#95a1ab;--line:#2d363e;--band:#20272d;--era:#e7ebee;--accent:#e0714f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121619;--card:#1b2126;--ink:#e7ebee;--mute:#95a1ab;--line:#2d363e;--band:#20272d;--era:#e7ebee;--accent:#e0714f;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body)}
+.wrap{max-width:1280px;margin:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{margin:26px 0 0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font:700 34px/1.12 var(--display);margin:4px 0 6px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 16px;max-width:72ch}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+button,input{font:inherit;color:var(--ink)}
+button{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;cursor:pointer}
+button:hover{border-color:var(--mute)}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,.ev:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.chip:not(.on){opacity:.55}
+input{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 10px;width:220px;max-width:100%}
+.sp{flex:1}
+.seg{display:inline-flex}
+.seg button{border-radius:0;margin-left:-1px}
+.seg button:first-child{border-radius:8px 0 0 8px;margin-left:0}
+.seg button:last-child{border-radius:0 8px 8px 0}
+.seg button.on{position:relative;z-index:1}
+.seg small{opacity:.7;margin-left:2px}
+#scale{color:var(--mute);font-size:13px;font-variant-numeric:tabular-nums}
+#sc{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
+#in{position:relative}
+#lab{position:sticky;left:0;width:0;height:0;z-index:2}
+#lab div{position:absolute;left:8px;background:var(--card);opacity:.95;padding:2px 8px;border-radius:6px;font-weight:600;font-size:12px;border-left:4px solid;white-space:nowrap}
+#lab small{color:var(--mute);font-weight:400}
+#lab .none{border-left:0;font-weight:400;font-size:13px;color:var(--mute)}
+svg{display:block}
+svg text{font:12px var(--body);fill:var(--ink);pointer-events:none}
+.yr{fill:var(--mute)!important;font-size:12px;font-variant-numeric:tabular-nums}
+.era{fill:var(--mute)!important;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.ev{cursor:pointer}
+.ev circle{stroke:var(--card);stroke-width:2}
+.ev.sel circle,.ev.sel rect{stroke:var(--ink);stroke-width:3}
+.ev.dim{opacity:.15}
+#mm{margin:12px 0;background:var(--card);border:1px solid var(--line);border-radius:10px;cursor:pointer;width:100%;height:56px;touch-action:none}
+#mm text{font-size:10px;fill:var(--mute)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:28px;display:flex;gap:16px;align-items:flex-start}
+.panel>div:first-child{flex:1;min-width:0}
+.tag{font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums}
+.tag b{display:inline-block;padding:1px 8px;border-radius:10px;color:#fff;font-weight:600;margin-right:8px}
+.panel h2{font:700 26px/1.2 var(--display);margin:6px 0;text-wrap:balance}
+.panel p{margin:0;max-width:75ch}
+.who{margin-top:8px!important;font-size:14px}
+.who span{color:var(--mute)}
+.era-note{margin-top:10px!important;font-size:13px;color:var(--mute)}
+.nav{display:flex;gap:6px}
+.nav button:disabled{opacity:.35;cursor:default}
+@media(max-width:700px){.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}h1{font-size:26px}.panel{flex-direction:column}.sp{display:none}}
+</style>
+<div class="wrap">
+<p class="eyebrow">Ciência e tecnologia · 1620–1945</p>
+<h1>Do vácuo ao jato: a história das máquinas térmicas</h1>
+<p class="sub">De Torricelli e Papin a Newcomen, Watt, Stirling, Carnot, Otto e Diesel. A escala é proporcional: a distância entre dois eventos corresponde ao tempo real entre eles. Dê zoom, escolha o nível de detalhe (quanto maior o ponto, mais importante o evento) ou arraste a miniatura para navegar.</p>
+<div class="bar" id="chips"></div>
+<div class="bar">
+  <span id="presets" class="bar" style="margin:0"></span>
+  <span class="seg" id="seg" role="group" aria-label="Nível de detalhe"></span>
+  <button id="zo" aria-label="Diminuir zoom">−</button><button id="zi" aria-label="Aumentar zoom">+</button>
+  <span class="sp"></span><span id="scale"></span>
+  <input id="q" type="search" placeholder="Buscar evento ou pessoa" aria-label="Buscar evento ou pessoa">
+</div>
+<div id="sc"><div id="in"><div id="lab"></div><svg id="svg" role="group" aria-label="Linha do tempo"></svg></div></div>
+<svg id="mm" aria-label="Miniatura da linha do tempo"></svg>
+<div class="panel" id="panel"></div>
+</div>
+<script>
+// categoria|início|fim|título|descrição|nível (1 essencial, 2 importante, 3 demais)|pessoas
+const RAW=`u|1629||Turbina de Branca|Giovanni Branca descreve uma roda de pás girada por um jato de vapor. A ideia remonta à eolípila de Heron de Alexandria, do século I.|2|Giovanni Branca
+f|1643||Barômetro de Torricelli|No experimento concebido por Torricelli e montado por Viviani, uma coluna de mercúrio para a cerca de 76 cm e deixa vácuo acima dela: o ar tem peso e exerce pressão.|1|Evangelista Torricelli, Vincenzo Viviani
+f|1648-09-19||Experiência do Puy de Dôme|A pedido de Pascal, Florin Périer leva o barômetro ao alto da montanha e confirma que a pressão do ar cai com a altitude.|3|Blaise Pascal, Florin Périer
+f|1654||Hemisférios de Magdeburgo|Guericke apresenta sua bomba de vácuo em Regensburg. Nas demonstrações seguintes, parelhas de cavalos não conseguem separar dois hemisférios de cobre esvaziados.|2|Otto von Guericke
+f|1662||Lei de Boyle|Com a bomba de ar construída por Hooke, Boyle mostra que a pressão de um gás é inversamente proporcional ao seu volume.|2|Robert Boyle, Robert Hooke
+c|1673||Motor a pólvora de Huygens|Uma pequena carga de pólvora explode num cilindro; os gases escapam e a pressão do ar empurra o pistão de volta. É o ancestral da combustão interna.|2|Christiaan Huygens, Denis Papin
+v|1679||Digestor de Papin|Papin apresenta à Royal Society uma panela de pressão para amolecer ossos. A válvula de segurança de contrapeso que a protege aparece descrita em detalhe no livro que ele publica em 1681.|2|Denis Papin
+v|1690||Cilindro e pistão de Papin|Papin propõe condensar vapor dentro de um cilindro: o vácuo formado deixa a pressão atmosférica empurrar o pistão. É o princípio das máquinas atmosféricas.|1|Denis Papin
+v|1698||Bomba de fogo de Savery|Savery patenteia o Amigo do Mineiro, bomba sem pistão que usa vapor e vácuo para tirar água das minas. Usa vapor sob pressão, o que traz risco de explosão com as caldeiras da época, eleva a água a pouca altura e gasta muito carvão.|1|Thomas Savery
+i|1709||Ferro com coque em Coalbrookdale|Darby funde ferro usando coque em vez de carvão vegetal, abrindo caminho para o ferro barato de que as máquinas precisarão.|2|Abraham Darby I
+v|1712||Máquina de Newcomen|Perto de Dudley, na Inglaterra, funciona a primeira máquina atmosférica de pistão útil na prática, drenando uma mina de carvão. Rende menos de 1% da energia do carvão, mas se espalha pelas minas por todo o século.|1|Thomas Newcomen, John Calley
+f|1714||Termômetro de mercúrio|Fahrenheit constrói termômetros de mercúrio confiáveis e comparáveis entre si; sua escala é publicada em 1724.|3|Daniel Gabriel Fahrenheit
+f|1738||Hydrodynamica de Bernoulli|Daniel Bernoulli explica a pressão de um gás pelo choque de partículas em movimento, antecipando a teoria cinética.|2|Daniel Bernoulli
+f|1742||Escala Celsius|Celsius propõe a escala centígrada, originalmente invertida: 0 na ebulição e 100 no congelamento da água.|3|Anders Celsius
+f|1761||Calor latente|Black observa que o gelo ao derreter e a água ao ferver absorvem calor sem mudar de temperatura. A ideia guia Watt, seu colega em Glasgow.|1|Joseph Black
+v|1765-05||Condensador separado|Ao consertar um modelo de Newcomen da Universidade de Glasgow, Watt percebe que resfriar o cilindro a cada ciclo desperdiça vapor. A solução é condensar o vapor numa câmara à parte e manter o cilindro sempre quente.|1|James Watt
+v|1769-01-05||Patente de Watt|Watt patenteia o método para reduzir o consumo de vapor e de combustível com o condensador separado.|2|James Watt
+x|1769||Fardier de Cugnot|Cugnot testa para o exército francês um protótipo de carro a vapor para puxar canhões, o primeiro veículo autopropelido. O veículo em tamanho real, de 1770–1771, está hoje no Musée des Arts et Métiers, em Paris.|2|Nicolas-Joseph Cugnot
+v|1772||Smeaton mede a Newcomen|Smeaton testa e otimiza sistematicamente as máquinas atmosféricas e aumenta bastante seu rendimento.|3|John Smeaton
+i|1774||Mandriladora de Wilkinson|A máquina de broquear canhões de Wilkinson produz cilindros precisos, sem os quais a máquina de Watt vazaria vapor.|2|John Wilkinson
+i|1775||Sociedade Boulton e Watt|Boulton e Watt se associam em Birmingham, e o Parlamento estende a patente do condensador até 1800.|1|Matthew Boulton, James Watt
+v|1776-03-08||Primeira Watt em operação|Uma máquina Boulton e Watt começa a bombear água numa mina em Tipton.|3|James Watt
+v|1781||Máquina composta de Hornblower|Hornblower usa o vapor em dois cilindros sucessivos, mas esbarra na patente de Watt.|3|Jonathan Hornblower
+v|1781||Movimento rotativo|Watt patenteia a engrenagem de sol e planeta, invenção de Murdoch, e a máquina deixa de só bombear água: passa a girar fábricas.|1|James Watt, William Murdoch
+v|1782||Ação dupla e expansão|O vapor passa a empurrar o pistão nos dois sentidos, e o corte antecipado do vapor aproveita sua expansão.|2|James Watt
+i|1783||Cavalo-vapor|Watt define o cavalo-vapor, 33 000 pés-libra por minuto, para vender máquinas comparando-as aos cavalos que substituíam.|2|James Watt
+v|1784||Movimento paralelo|Uma articulação de barras guia a haste do pistão em linha reta, peça de que Watt mais se orgulhava.|3|James Watt
+i|1785||Fiação movida a vapor|Em Papplewick, Nottinghamshire, uma máquina Boulton e Watt aciona pela primeira vez uma fiação de algodão.|3|George Robinson
+v|1788||Regulador centrífugo|Watt adapta o regulador de esferas para manter constante a rotação da máquina. É um marco da teoria de controle.|2|James Watt
+f|1789||Teoria do calórico|No Tratado elementar de química, Lavoisier inclui o calórico, um fluido invisível do calor, entre as substâncias simples. A ideia de um fluido do calor já circulava antes, e o nome calórico surgira em 1787, na nova nomenclatura química feita com Guyton de Morveau.|2|Antoine Lavoisier, Louis-Bernard Guyton de Morveau
+f|1798||Experimento de Rumford|Ao observar a perfuração de canhões em Munique, Rumford conclui que o atrito gera calor sem limite, o que contraria a teoria do calórico.|1|Benjamin Thompson, conde Rumford
+v|1800||Fim da patente de Watt|Com a expiração, outros engenheiros ficam livres para usar o condensador separado e experimentar vapor em alta pressão.|2|James Watt
+x|1801-12-24||Puffing Devil|A carruagem a vapor de alta pressão de Trevithick sobe uma ladeira em Camborne, na Cornualha.|2|Richard Trevithick
+f|1802||Lei de Gay-Lussac|Gay-Lussac publica a dilatação dos gases com a temperatura, já observada por Charles por volta de 1787.|2|Joseph Louis Gay-Lussac, Jacques Charles
+x|1804-02-21||Primeira locomotiva sobre trilhos|A locomotiva de Trevithick puxa 10 toneladas de ferro e cerca de 70 pessoas na ferrovia de Pen-y-Darren, no País de Gales.|1|Richard Trevithick
+v|1804||Máquina composta de Woolf|Woolf combina alta pressão e dois cilindros, uma solução econômica que se difunde nas minas da Cornualha.|3|Arthur Woolf
+x|1807-08-17||Barco a vapor de Fulton|O North River Steamboat, depois chamado Clermont, faz a viagem de teste de Nova York a Albany. Em 4 de setembro começa o serviço comercial regular, o primeiro de barcos a vapor.|1|Robert Fulton
+x|1812||Locomotiva Salamanca|Primeira locomotiva comercialmente bem-sucedida, na ferrovia de Middleton, em Leeds.|3|Matthew Murray, John Blenkinsop
+x|1814||Blücher de Stephenson|A primeira locomotiva de George Stephenson puxa carvão em Killingworth.|3|George Stephenson
+a|1816-09-27||Patente de Stirling|Um pastor escocês patenteia o motor de ar quente com regenerador. Como não usa caldeira a vapor, ele evita o risco de explosão de caldeiras, comum nas máquinas da época.|1|Robert Stirling
+a|1818||Stirling bombeia água|Um motor Stirling passa a drenar uma pedreira em Ayrshire, na Escócia.|3|Robert Stirling
+v|1819-08-25||Morte de James Watt|Watt morre aos 83 anos em Handsworth, perto de Birmingham.|3|James Watt
+x|1819||Savannah cruza o Atlântico|Primeiro navio com máquina a vapor a cruzar o oceano, embora tenha navegado quase todo o tempo a vela.|3|Moses Rogers
+f|1822||Teoria analítica do calor|Fourier descreve matematicamente a condução do calor nos sólidos.|2|Joseph Fourier
+t|1824||Reflexões de Carnot|Carnot publica Reflexões sobre a potência motriz do fogo: o trabalho surge quando o calor passa de um corpo quente a um frio, e o rendimento máximo depende só das duas temperaturas. A obra passa quase despercebida.|1|Sadi Carnot
+x|1825-09-27||Ferrovia Stockton–Darlington|A Locomotion nº 1 puxa o primeiro trem de uma ferrovia pública movida a vapor.|1|George Stephenson
+x|1829-10-06|1829-10-14|Ensaios de Rainhill|A Rocket vence o concurso da ferrovia Liverpool–Manchester com caldeira de múltiplos tubos e escape de vapor pela chaminé.|1|George Stephenson, Robert Stephenson
+x|1830-09-15||Ferrovia Liverpool–Manchester|Primeira linha interurbana operada só por locomotivas e com horários regulares.|2|George Stephenson
+t|1832-08-24||Morte de Carnot|Sadi Carnot morre de cólera aos 36 anos; boa parte de seus papéis é queimada.|3|Sadi Carnot
+a|1834||Refrigerador de Perkins|Perkins patenteia o ciclo de compressão de vapor: uma máquina térmica operando ao contrário, que consome trabalho para levar calor de uma região fria para uma mais quente.|2|Jacob Perkins
+t|1834||Clapeyron e o diagrama PV|Clapeyron traduz Carnot para a linguagem matemática e para o diagrama pressão–volume. É por esse texto que a ideia chega a Kelvin e Clausius.|2|Émile Clapeyron
+x|1838-04||Travessia do Atlântico a vapor|O Sirius e o Great Western chegam a Nova York com poucas horas de diferença, cruzando o oceano movidos a vapor.|2|Isambard Kingdom Brunel (Great Western)
+i|1839||Martelo-pilão a vapor|Nasmyth projeta o martelo a vapor para forjar peças grandes, como eixos de navios.|3|James Nasmyth
+t|1842||Equivalência entre calor e trabalho|Mayer propõe que calor e trabalho são formas de uma mesma grandeza e estima a relação numérica entre eles.|2|Julius Robert von Mayer
+a|1843||Stirling industrial em Dundee|Uma versão maior do motor, criada com o irmão James, aciona por alguns anos uma fundição em Dundee.|3|Robert Stirling, James Stirling
+t|1843|1850|Experimentos de Joule|Joule mede o equivalente mecânico do calor. No experimento mais famoso, pesos em queda giram pás dentro da água e a aquecem.|1|James Prescott Joule
+t|1847||Conservação da energia|Helmholtz apresenta em Berlim a conservação da energia como princípio geral de toda a física.|1|Hermann von Helmholtz
+t|1848||Escala absoluta de temperatura|A partir do ciclo de Carnot, Thomson propõe uma escala de temperatura que não depende da substância do termômetro. Ela ficaria conhecida como escala Kelvin, título que ele recebe em 1892.|2|William Thomson, futuro lorde Kelvin
+v|1849||Válvula Corliss|Corliss patenteia válvulas de abertura e fechamento rápidos que tornam as máquinas fixas muito mais econômicas.|2|George Corliss
+t|1850||Segunda lei: Clausius|Clausius concilia Carnot e Joule e estabelece a segunda lei. Em 1854 ele a resume: o calor não passa espontaneamente de um corpo frio para um quente.|1|Rudolf Clausius
+t|1851||Teoria dinâmica do calor|Thomson formula a segunda lei à sua maneira: não se obtém trabalho apenas resfriando um corpo abaixo da temperatura dos objetos mais frios ao redor.|2|William Thomson, futuro lorde Kelvin
+i|1851-05-01|1851-10-15|Grande Exposição de Londres|No Palácio de Cristal, máquinas a vapor, bombas e locomotivas são exibidas como símbolos da indústria britânica.|2|Joseph Paxton
+a|1853||Navio calórico de Ericsson|Ericsson equipa um navio com enormes motores de ar quente. A potência decepciona e ele volta ao vapor.|3|John Ericsson
+x|1854-04-30||Primeira ferrovia do Brasil|O barão de Mauá inaugura a Estrada de Ferro Mauá, no Rio de Janeiro, com a locomotiva Baroneza.|2|Irineu Evangelista de Sousa, barão de Mauá
+t|1859||Manual de Rankine|Rankine publica o primeiro tratado de termodinâmica para engenheiros. O ciclo das usinas a vapor leva seu nome.|2|William Rankine
+c|1860||Motor de Lenoir|Primeiro motor de combustão interna vendido em série. Queima gás de iluminação sem comprimir a mistura e rende pouco.|1|Étienne Lenoir
+t|1860||Distribuição de Maxwell|Maxwell calcula a distribuição de velocidades das moléculas de um gás, e a teoria cinética ganha forma estatística.|2|James Clerk Maxwell
+c|1862||Quatro tempos no papel|Beau de Rochas descreve em patente francesa o ciclo admissão, compressão, explosão e escape, sem chegar a construir o motor.|2|Alphonse Beau de Rochas
+x|1863-01-10||Metrô de Londres a vapor|A Metropolitan Railway abre a primeira linha subterrânea do mundo, com locomotivas a vapor.|3|Charles Pearson
+t|1865||Entropia|Clausius cunha a palavra entropia e resume as duas leis: a energia do universo é constante e a entropia tende a um máximo.|1|Rudolf Clausius
+c|1867||Motor atmosférico de Otto e Langen|Na Exposição de Paris, o motor a gás de Otto e Langen ganha medalha de ouro por gastar muito menos combustível que o de Lenoir.|2|Nikolaus Otto, Eugen Langen
+t|1871||Demônio de Maxwell|No livro Theory of Heat, Maxwell divulga o ser imaginário que separa moléculas rápidas e lentas, um desafio à segunda lei discutido até hoje. Ele já descrevera a ideia em 1867, numa carta a Tait.|3|James Clerk Maxwell
+c|1872||Motor de Brayton|Brayton patenteia um motor de combustão a pressão constante. O ciclo Brayton é hoje o das turbinas a gás e dos motores a jato.|2|George Brayton
+c|1876||Motor de quatro tempos de Otto|Na fábrica Deutz, em Colônia, funciona o motor que comprime a mistura antes da ignição. O ciclo Otto ainda move a maioria dos carros a gasolina.|1|Nikolaus Otto, Gottlieb Daimler, Wilhelm Maybach
+a|1876||Refrigeração de Linde|Linde desenvolve compressores de amônia confiáveis, adotados primeiro pelas cervejarias.|3|Carl von Linde
+t|1876|1878|Equilíbrio de Gibbs|Gibbs publica o estudo sobre o equilíbrio de substâncias heterogêneas, base da termodinâmica química.|2|Josiah Willard Gibbs
+t|1877||Entropia estatística|Boltzmann relaciona a entropia ao número de arranjos microscópicos possíveis de um sistema.|2|Ludwig Boltzmann
+c|1878||Motor de dois tempos|Clerk desenvolve um motor que completa o ciclo a cada volta do virabrequim.|3|Dugald Clerk
+i|1882||Unidade watt|A Associação Britânica adota o nome watt para a unidade de potência. Em 1960, o watt entra no Sistema Internacional.|3|James Watt
+u|1883||Turbina de De Laval|De Laval cria uma turbina de impulso de altíssima rotação. Em 1888, ele aplica a ela o bocal convergente-divergente, que acelera o vapor a velocidades supersônicas.|2|Gustaf de Laval
+u|1884||Turbina de Parsons|Parsons patenteia a turbina a vapor de reação em vários estágios e a acopla a um dínamo para gerar eletricidade.|1|Charles Parsons
+c|1885||Motor rápido de Daimler|O motor leve e rápido de Daimler e Maybach roda a gasolina e equipa o Reitwagen, ancestral da motocicleta.|2|Gottlieb Daimler, Wilhelm Maybach
+c|1886||Patente de Otto anulada|Tribunais alemães invalidam a patente de quatro tempos de Otto por causa do texto de Beau de Rochas, e o ciclo fica livre para todos os fabricantes. Otto também enfrentara a contestação do relojoeiro de Munique Christian Reithmann, com quem a Deutz fez acordo.|3|Nikolaus Otto, Christian Reithmann
+x|1886-01-29||Benz Patent-Motorwagen|Benz patenteia um triciclo com motor de quatro tempos a gasolina, considerado o primeiro automóvel.|1|Carl Benz
+x|1888-08||Viagem de Bertha Benz|Bertha Benz dirige o Motorwagen de Mannheim a Pforzheim, cerca de 100 km, e prova que o carro serve para viajar.|3|Bertha Benz
+c|1892|1897|Motor Diesel|Diesel patenteia o motor de ignição por compressão inspirado em Carnot. O protótipo de Augsburgo, em 1897, alcança cerca de 26% de rendimento, o maior entre as máquinas térmicas da época.|1|Rudolf Diesel
+a|1895||Liquefação do ar|Linde liquefaz o ar em escala industrial com o efeito Joule-Thomson.|3|Carl von Linde
+u|1897-06-26||Turbinia|O barco de Parsons passa a mais de 30 nós diante da frota britânica em Spithead e convence a Marinha a adotar a turbina.|2|Charles Parsons
+x|1903-12-17||Voo dos irmãos Wright|O Flyer voa em Kitty Hawk com um motor a gasolina de quatro cilindros feito na própria oficina.|2|Wilbur Wright, Orville Wright, Charlie Taylor
+x|1906-10-23||14-Bis de Santos-Dumont|Em Paris, o 14-Bis decola com um motor Antoinette V8 a gasolina, num voo público reconhecido pelo Aeroclube da França.|2|Alberto Santos-Dumont
+t|1906||Teorema do calor de Nernst|Nernst mostra que as variações de entropia em transformações de sólidos e líquidos tendem a zero perto do zero absoluto. Em 1911, Planck reformula o resultado: a entropia de um cristal perfeito tende a zero. Daí vem a terceira lei.|2|Walther Nernst
+x|1908-10-01||Ford Modelo T|O carro popular de Ford, depois montado em linha móvel, espalha o motor a gasolina pelo mundo.|2|Henry Ford
+u|1930-01-16||Patente do turbojato|Whittle registra a patente de um motor a jato com compressor e turbina a gás.|2|Frank Whittle
+u|1937-04-12||Primeiro turbojato funciona|O motor experimental de Whittle roda em bancada na Inglaterra.|2|Frank Whittle
+a|1938||Philips retoma o Stirling|Os laboratórios Philips desenvolvem pequenos geradores Stirling para rádios em regiões sem eletricidade.|3|Laboratórios Philips
+x|1938-07-03||Recorde da Mallard|Numa descida, a Mallard atinge por instantes cerca de 203 km/h (126 mph), e um mancal superaquece logo depois. É o recorde oficial de velocidade a vapor até hoje. Em 1936, a alemã 05 002 chegara a 200,4 km/h em terreno plano.|2|Nigel Gresley
+u|1939||Usina de turbina a gás|A Brown Boveri instala em Neuchâtel, na Suíça, a primeira turbina a gás para gerar eletricidade.|3|Brown Boveri
+u|1939-08-27||Heinkel He 178|Primeiro voo de um avião movido por turbojato, o motor de Hans von Ohain. Em junho do mesmo ano, o He 176 já voara com um motor-foguete.|1|Hans von Ohain, Ernst Heinkel`;
+const C={f:['Gases e calor','#1f7f7a'],v:['Máquinas a vapor','#b0462b'],a:['Ar quente e frio','#c27413'],t:['Termodinâmica','#2f5f9e'],c:['Combustão interna','#7a45ad'],u:['Turbinas','#3b8a3e'],x:['Transportes','#9a7a1c'],i:['Indústria','#566270']};
+const ORDER=Object.keys(C),MES='jan fev mar abr mai jun jul ago set out nov dez'.split(' ');
+const T0=1620,T1=1945,PAD=150,RH=28,PMAX=60;
+const ERAS=[['Ar, vácuo e pressão',1620,1712,'Vácuo'],['Era do vapor',1712,1824,'Vapor'],['Nasce a termodinâmica',1824,1876,'Termodinâmica'],['Combustão interna e turbinas',1876,1945,'Combustão']];
+const eraLab=r=>{const w=X(r[2])-X(r[1])-14,n=[r[0],r[3]].find(s=>s.length*7.6<=w);return n?`<text class="era" x="${X(r[1])+8}" y="15">${n}</text>`:''};
+const T=s=>{const[y,m,d]=s.split('-').map(Number),u=(Y,M,D)=>Date.UTC(Y,M,D);return y+(u(y,(m||1)-1,d||1)-u(y,0,1))/(u(y+1,0,1)-u(y,0,1))};
+const F=s=>{const[y,m,d]=s.split('-');return d?+d+' '+MES[m-1]+' '+y:m?MES[m-1]+' '+y:y};
+const E=RAW.split('\n').map(r=>{const[c,a,b,t,x,M,w]=r.split('|');return{c,a,b,t,x,w:w||'',L:+M||3,s:T(a),e:b?T(b):null}}).sort((p,q)=>p.s-q.s);
+E.forEach((e,i)=>e.i=i);
+const $=id=>document.getElementById(id),sc=$('sc'),svg=$('svg'),mm=$('mm');
+let ppy=1,vis=new Set(ORDER),q='',sel=null,lvl=1;
+const X=t=>PAD+(t-T0)*ppy;
+const dur=e=>{if(e.e===null)return'';const y=e.e-e.s;return y>=1.5?` (${Math.round(y)} anos)`:y>=.12?` (${Math.round(y*12)} meses)`:` (${Math.max(1,Math.round(y*365)+1)} dias)`};
+const eraOf=t=>ERAS.find(r=>t>=r[1]&&t<r[2])||ERAS[ERAS.length-1];
+const norm=s=>s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+const match=e=>!q||norm(e.t+' '+e.x+' '+e.w).includes(q);
+function render(){
+  let W=PAD+(T1-T0)*ppy+30,maxEnd=0;const labs=[];let top=50,body='';
+  const step=[1,2,5,10,25,50,100].find(s=>s*ppy>=34)||100;
+  const lb=ppy>=6||lvl===1;
+  ORDER.filter(c=>vis.has(c)&&E.some(e=>e.c===c&&e.L<=lvl)).forEach((c,k)=>{
+    const rows=[];let g='';
+    E.filter(e=>e.c===c&&e.L<=lvl).forEach(e=>{
+      const nm=e.t,x0=X(e.s),per=e.e!==null,bw=per?Math.max(8,X(Math.min(e.e,T1))-x0):0,lw=nm.length*6.7+14;
+      const inside=per&&bw>=lw,flip=lb&&!inside&&(per?x0+bw:x0)+lw>X(T1)+10;
+      const start=flip?x0-lw-(per?8:12):per?x0:x0-8;
+      const end=flip?(per?x0+bw:x0+10):per?x0+bw+(lb&&!inside?lw:0):x0+(lb?lw+12:10);
+      let r=rows.findIndex(v=>v<=start);if(r<0)r=rows.length;rows[r]=end+4;maxEnd=Math.max(maxEnd,end);
+      const y=top+16+r*RH,col=C[c][1];
+      const tt=`<title>${e.t} — ${F(e.a)}${e.b?' – '+F(e.b):''}</title>`;
+      const s=per?`<rect x="${x0}" y="${y-9}" width="${bw}" height="18" rx="4" fill="${col}" fill-opacity=".25" stroke="${col}"/>`+(lb?`<text x="${flip?x0-6:inside?x0+6:x0+bw+6}" y="${y+4}"${flip?' text-anchor="end"':''}>${nm}</text>`:''):`<circle cx="${x0}" cy="${y}" r="${[0,8,6,4.5][e.L]}" fill="${col}"/>`+(lb?`<text x="${flip?x0-11:x0+11}" y="${y+4}"${flip?' text-anchor="end"':''}>${nm}</text>`:'');
+      g+=`<g class="ev${e.i===sel?' sel':''}${match(e)?'':' dim'}" data-i="${e.i}" tabindex="0" role="button" aria-label="${e.t}, ${F(e.a)}">${tt}${s}</g>`;
+    });
+    const h=Math.max(1,rows.length)*RH+14;
+    body+=`<rect x="0" y="${top}" height="${h}" style="fill:var(--band)" fill-opacity="${k%2?0:1}" width="100%"/>`+g;
+    labs.push(`<div style="top:${top+6}px;border-color:${C[c][1]}">${C[c][0]} <small>${E.filter(e=>e.c===c&&e.L<=lvl).length}</small></div>`);
+    top+=h;
+  });
+  if(!vis.size){labs.push('<div class="none" style="top:64px">Nenhuma categoria selecionada. Clique em Todos ou em uma categoria.</div>');top+=60}
+  W=Math.max(W,maxEnd+16);const H=top+8;let grid='';
+  for(let t=Math.ceil(T0/step)*step;t<=T1;t+=step){const x=X(t);grid+=`<line x1="${x}" x2="${x}" y1="42" y2="${H}" style="stroke:var(--line)" stroke-dasharray="2 4"/><text class="yr" x="${x}" y="36" text-anchor="middle">${t}</text>`}
+  const eras=ERAS.map((r,k)=>`<rect x="${X(r[1])}" y="0" width="${X(r[2])-X(r[1])}" height="${H}" style="fill:var(--era)" fill-opacity="${k%2?0:.035}"/><line x1="${X(r[1])}" x2="${X(r[1])}" y1="0" y2="${H}" style="stroke:var(--mute)" stroke-opacity=".5"/>${eraLab(r)}`).join('');
+  svg.setAttribute('width',W);svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  svg.innerHTML=eras+grid+body;$('lab').innerHTML=labs.join('');$('in').style.width=W+'px';
+  $('scale').textContent=`1 século ≈ ${Math.round(ppy*100)} px`;
+  const MW=mm.clientWidth||1000,M=t=>(t-T0)/(T1-T0)*MW;mm.setAttribute('viewBox',`0 0 ${MW} 56`);
+  mm.innerHTML=ERAS.map((r,k)=>`<rect x="${M(r[1])}" y="0" width="${M(r[2])-M(r[1])}" height="56" fill="var(--era)" fill-opacity="${k%2?0:.06}"/>`).join('')+
+   E.filter(e=>vis.has(e.c)&&e.L<=lvl).map(e=>`<line x1="${M(e.s)}" x2="${M(e.s)}" y1="${[0,8,15,23][e.L]}" y2="46" stroke="${C[e.c][1]}" stroke-width="1.5"/>`).join('')+
+   [1650,1700,1750,1800,1850,1900].map(t=>`<text x="${M(t)+3}" y="53">${t}</text>`).join('')+'<rect id="vp" y="1" height="54" rx="3" fill="var(--accent)" fill-opacity=".16" stroke="var(--accent)" vector-effect="non-scaling-stroke"/>';
+  view();
+}
+function view(){const vp=$('vp');if(!vp)return;const MW=mm.clientWidth||1000,k=MW/((T1-T0)*ppy),a=Math.max(0,(sc.scrollLeft-PAD)*k),b=Math.min(MW,(sc.scrollLeft+sc.clientWidth-PAD)*k);vp.setAttribute('x',a);vp.setAttribute('width',Math.max(2,b-a))}
+function go(t){sc.scrollLeft=X(t)-PAD-20}
+const minP=()=>(sc.clientWidth-PAD-30)/(T1-T0);
+function fit(a,b){ppy=Math.min(PMAX,Math.max(minP(),(sc.clientWidth-PAD-30)/(b-a)));render();go(a)}
+function zoom(f){const c=(sc.scrollLeft+sc.clientWidth/2-PAD)/ppy+T0;ppy=Math.min(PMAX,Math.max(minP(),ppy*f));render();sc.scrollLeft=X(c)-sc.clientWidth/2}
+function pick(i,center,keep){
+  sel=i;const e=E[i],c=C[e.c],era=eraOf(e.s);
+  $('panel').innerHTML=`<div><div class="tag"><b style="background:${c[1]}">${c[0]}</b>${F(e.a)}${e.b?' – '+F(e.b):''}${dur(e)}</div><h2>${e.t}</h2><p>${e.x}</p>${e.w?`<p class="who"><span>Quem:</span> ${e.w}</p>`:''}<p class="era-note">${era[0]} (${era[1]}–${era[2]})</p></div><div class="nav"><button id="pv" aria-label="Evento anterior">←</button><button id="nx" aria-label="Próximo evento">→</button></div>`;
+  const list=E.filter(x=>vis.has(x.c)&&x.L<=lvl),p=list.indexOf(e);
+  const prev=p>=0?list[p-1]:list.filter(x=>x.i<e.i).pop(),next=p>=0?list[p+1]:list.find(x=>x.i>e.i);
+  $('pv').disabled=!prev;$('nx').disabled=!next;
+  $('pv').onclick=()=>prev&&pick(prev.i,1);$('nx').onclick=()=>next&&pick(next.i,1);
+  svg.querySelectorAll('.ev').forEach(g=>g.classList.toggle('sel',+g.dataset.i===i));
+  const x=X(e.s);if(!keep&&(center||x<sc.scrollLeft+PAD||x>sc.scrollLeft+sc.clientWidth-40))sc.scrollLeft=x-sc.clientWidth/2;
+}
+svg.addEventListener('click',ev=>{const g=ev.target.closest('.ev');if(g)pick(+g.dataset.i)});
+svg.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){const g=ev.target.closest('.ev');if(g){ev.preventDefault();pick(+g.dataset.i)}}});
+sc.addEventListener('scroll',view);
+const mgo=ev=>{const r=mm.getBoundingClientRect(),t=T0+(ev.clientX-r.left)/r.width*(T1-T0);sc.scrollLeft=X(t)-sc.clientWidth/2};
+mm.addEventListener('pointerdown',ev=>{mm.setPointerCapture(ev.pointerId);mgo(ev);mm.onpointermove=mgo});
+mm.addEventListener('pointerup',()=>mm.onpointermove=null);mm.addEventListener('pointercancel',()=>mm.onpointermove=null);
+const LV=[['Essenciais','Só os grandes marcos'],['Importantes','Essenciais e os eventos de maior peso'],['Todos','Todos os eventos, inclusive aperfeiçoamentos e episódios menores']];
+function lvlUI(){$('seg').innerHTML=LV.map((l,i)=>{const n=E.filter(e=>e.L<=i+1).length;return`<button data-l="${i+1}" class="${lvl===i+1?'on':''}" aria-pressed="${lvl===i+1}" title="${l[1]}">${l[0]} <small>${n}</small></button>`}).join('')}
+$('seg').onclick=ev=>{const b=ev.target.closest('button');if(!b)return;lvl=+b.dataset.l;lvlUI();render();if(sel!==null)pick(sel,0,1)};
+$('zi').onclick=()=>zoom(1.6);$('zo').onclick=()=>zoom(1/1.6);
+$('q').oninput=ev=>{q=norm(ev.target.value.trim());render()};
+function chips(){
+  const all=vis.size===ORDER.length;$('chips').innerHTML='<button class="chip'+(all?' on':'')+'" data-c="*" aria-pressed="'+all+'" title="'+(all?'Ocultar todas as categorias':'Mostrar todas as categorias')+'">Todos</button>'+ORDER.map(c=>`<button class="chip${vis.has(c)?' on':''}" data-c="${c}" aria-pressed="${vis.has(c)}"><i style="background:${C[c][1]}"></i>${C[c][0]}</button>`).join('');
+}
+$('chips').onclick=ev=>{const b=ev.target.closest('button');if(!b)return;const c=b.dataset.c;
+  if(c==='*')vis=vis.size===ORDER.length?new Set():new Set(ORDER);else vis.has(c)?vis.delete(c):vis.add(c);
+  chips();render();if(sel!==null)pick(sel,0,1)};
+[['1620–1945',T0,T1],['Vácuo e pressão',1620,1716],['Era do vapor',1708,1828],['Termodinâmica',1820,1880],['Combustão e turbinas',1872,1945]].forEach(([n,a,b])=>{
+  const el=document.createElement('button');el.textContent=n;el.onclick=()=>fit(a,b);$('presets').appendChild(el)});
+$('panel').innerHTML='<div><div class="tag">Selecione um evento</div><h2>Três séculos de calor transformado em movimento</h2><p>A prática veio antes da teoria: Newcomen e Watt construíram máquinas sem saber o que era o calor. Carnot, Joule e Clausius explicaram depois por que elas funcionavam, e essa teoria guiou Otto, Diesel e os motores a jato. Clique em um ponto ou período, use as setas para percorrer a cronologia ou busque por nome, como Watt ou Stirling.</p></div>';
+chips();lvlUI();fit(T0,T1);
+let lastCW=sc.clientWidth,lastMin=minP();
+addEventListener('resize',()=>{if(sc.clientWidth===lastCW)return;const full=ppy<=lastMin+1e-9,tl=(sc.scrollLeft-PAD)/ppy+T0;lastCW=sc.clientWidth;lastMin=minP();ppy=full?lastMin:Math.min(PMAX,Math.max(lastMin,ppy));render();sc.scrollLeft=X(tl)});
+</script>
+
+</body></html>
